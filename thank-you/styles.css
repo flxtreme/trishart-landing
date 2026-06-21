@@ -1,0 +1,42 @@
+@keyframes floatPetal {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(120px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+.petal {
+    position: absolute;
+    border-radius: 50% 0 50% 50%;
+    background: #f5d949;
+    animation: floatPetal 3.5s ease-in forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pop-in {
+    animation: popIn 0.6s ease-out forwards;
+}

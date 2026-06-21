@@ -46,145 +46,9 @@
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        heading: ['Montserrat', 'sans-serif'],
-                        'heading-2': ['"Playfair Display"', 'serif'],
-                        body: ['"DM Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        // Daisy palette: dirty white petals, sunshine-yellow center,
-                        // leafy green accents, earthy brown grounding tones.
-                        ivory: '#fdfcf8',     // dirty white — base background (petals)
-                        mist: '#eceadf',      // light gray — secondary surfaces
-                        blossom: '#f5d949',   // daisy-yellow — primary accent (center)
-                        'blossom-light': '#faea9c', // pale daisy-yellow — soft highlights
-                        'blossom-dark': '#e0c12e',
-                        leaf: '#6b8f3e',       // leafy green — secondary accent
-                        'leaf-dark': '#54702f',
-                        bark: '#7a5c3e',       // brown — grounding/text accent
-                        'bark-light': '#a9876688', // lighter brown — muted text/borders
-                        'bark-dark': '#5e4630',
-                    },
-                },
-            },
-        };
-    </script>
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 64px;
-            /* offsets anchored sections below the fixed header */
-        }
-
-        body,
-        * {
-            font-family: "DM Sans", system-ui, sans-serif;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        button,
-        .font-heading {
-            font-family: "Montserrat", sans-serif;
-        }
-
-        /* Mask lives here instead of inline so mask-mode applies cleanly cross-browser */
-        .hero-mask {
-            background-image: url('./assets/hero.jpg');
-            background-size: cover;
-            background-position: center;
-            /* 
-            mask-image: url('./assets/brush-mask.png');
-            -webkit-mask-image: url('./assets/brush-mask.png');
-
-            mask-mode: alpha;
-            -webkit-mask-mode: alpha;
-
-            mask-size: cover;
-            -webkit-mask-size: cover;
-
-            mask-position: center;
-            -webkit-mask-position: center;
-
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat; */
-        }
-
-        /* Masonry gallery: CSS columns let items of different heights stack
-           and fill gaps naturally, instead of a rigid equal-height grid */
-        .masonry {
-            column-count: 2;
-            column-gap: 1.25rem;
-        }
-
-        .masonry-item {
-            will-change: transform;
-            break-inside: avoid;
-            margin-bottom: 1.25rem;
-            background-color: #eceadf;
-            /* mist — shows while images load */
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .masonry-item img {
-            transition:
-                transform .8s ease,
-                filter .8s ease;
-        }
-
-        .masonry-item:hover img {
-            transform: scale(1.04);
-        }
-
-        @media (min-width: 640px) {
-            .masonry {
-                column-count: 3;
-            }
-        }
-
-        @media (min-width: 1140px) {
-            .masonry {
-                column-count: 3;
-            }
-        }
-
-        /* Testimonials background image: a separate, absolutely-positioned layer
-   with its own opacity, so only the photo fades — not the text/cards
-   above it. Sits on top of whatever background-color the <body> has. */
-        #testimonials {
-            overflow: hidden;
-        }
-
-        .testimonial-bg-image {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-
-            background-image: url('./assets/shop.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            /* mobile default: avoids iOS jank */
-
-            opacity: 0.1;
-        }
-
-        @media (min-width: 1024px) {
-            .testimonial-bg-image {
-                background-attachment: fixed;
-            }
-        }
-    </style>
+    <script src="./tailwind.js"></script>
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./styles.css">
 
 </head>
 
@@ -460,7 +324,7 @@
                     </div>
                 </div>
 
-                <form class="w-full bg-ivory sm:rounded-tl-[40px] sm:rounded-br-[40px] p-6 lg:p-10 shadow-2xl">
+                <form action="/thank-you/" class="w-full bg-ivory sm:rounded-tl-[40px] sm:rounded-br-[40px] p-6 lg:p-10 shadow-2xl">
                     <div class="grid sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-bark mb-2">Name</label>

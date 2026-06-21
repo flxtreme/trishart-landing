@@ -1,0 +1,89 @@
+ /* Mask lives here instead of inline so mask-mode applies cleanly cross-browser */
+ .hero-mask {
+     background-image: url('./assets/hero.jpg');
+     background-size: cover;
+     background-position: center;
+     /* 
+            mask-image: url('./assets/brush-mask.png');
+            -webkit-mask-image: url('./assets/brush-mask.png');
+
+            mask-mode: alpha;
+            -webkit-mask-mode: alpha;
+
+            mask-size: cover;
+            -webkit-mask-size: cover;
+
+            mask-position: center;
+            -webkit-mask-position: center;
+
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat; */
+ }
+
+ /* Masonry gallery: CSS columns let items of different heights stack
+           and fill gaps naturally, instead of a rigid equal-height grid */
+ .masonry {
+     column-count: 2;
+     column-gap: 1.25rem;
+ }
+
+ .masonry-item {
+     will-change: transform;
+     break-inside: avoid;
+     margin-bottom: 1.25rem;
+     background-color: #eceadf;
+     /* mist — shows while images load */
+     border-radius: 1rem;
+     overflow: hidden;
+ }
+
+ .masonry-item img {
+     transition:
+         transform .8s ease,
+         filter .8s ease;
+ }
+
+ .masonry-item:hover img {
+     transform: scale(1.04);
+ }
+
+ @media (min-width: 640px) {
+     .masonry {
+         column-count: 3;
+     }
+ }
+
+ @media (min-width: 1140px) {
+     .masonry {
+         column-count: 3;
+     }
+ }
+
+ /* Testimonials background image: a separate, absolutely-positioned layer
+   with its own opacity, so only the photo fades — not the text/cards
+   above it. Sits on top of whatever background-color the <body> has. */
+ #testimonials {
+     overflow: hidden;
+ }
+
+ .testimonial-bg-image {
+     position: absolute;
+     inset: 0;
+     z-index: 0;
+     pointer-events: none;
+
+     background-image: url('./assets/shop.jpg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-attachment: scroll;
+     /* mobile default: avoids iOS jank */
+
+     opacity: 0.1;
+ }
+
+ @media (min-width: 1024px) {
+     .testimonial-bg-image {
+         background-attachment: fixed;
+     }
+ }
