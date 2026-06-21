@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Trish.art | Handmade Wire Art & Flower Bouquets</title>
+
+    <meta name="description"
+        content="Trish.art creates handcrafted wire art, floral bouquets, and unique handmade pieces perfect for gifts, decorations, and special occasions." />
+
+    <meta name="keywords" content="
+      wire art,
+      handmade flowers,
+      flower bouquet,
+      custom art,
+      handmade gifts,
+      floral decor,
+      Trish.art
+    " />
+
+    <meta name="author" content="Trish.art" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Trish.art | Handmade Wire Art & Flower Bouquets" />
+    <meta property="og:description" content="Beautiful handmade wire art and floral creations made with care." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trishart.store" />
+    <meta property="og:image" content="/assets/hero.jpg" />
+
+    <!-- Twitter / Social -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Trish.art | Handmade Wire Art" />
+    <meta name="twitter:description" content="Custom wire art and beautiful handmade flower creations." />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#fdfcf8" />
+
+    <!-- Fonts: Montserrat for titles, DM Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        'heading-2': ['"Playfair Display"', 'serif'],
+                        body: ['"DM Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Daisy palette: dirty white petals, sunshine-yellow center,
+                        // leafy green accents, earthy brown grounding tones.
+                        ivory: '#fdfcf8',     // dirty white — base background (petals)
+                        mist: '#eceadf',      // light gray — secondary surfaces
+                        blossom: '#f5d949',   // daisy-yellow — primary accent (center)
+                        'blossom-light': '#faea9c', // pale daisy-yellow — soft highlights
+                        'blossom-dark': '#e0c12e',
+                        leaf: '#6b8f3e',       // leafy green — secondary accent
+                        'leaf-dark': '#54702f',
+                        bark: '#7a5c3e',       // brown — grounding/text accent
+                        'bark-light': '#a9876688', // lighter brown — muted text/borders
+                        'bark-dark': '#5e4630',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 64px;
+            /* offsets anchored sections below the fixed header */
+        }
+
+        body,
+        * {
+            font-family: "DM Sans", system-ui, sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        button,
+        .font-heading {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        /* Mask lives here instead of inline so mask-mode applies cleanly cross-browser */
+        .hero-mask {
+            background-image: url('/assets/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            /* 
+            mask-image: url('/assets/brush-mask.png');
+            -webkit-mask-image: url('/assets/brush-mask.png');
+
+            mask-mode: alpha;
+            -webkit-mask-mode: alpha;
+
+            mask-size: cover;
+            -webkit-mask-size: cover;
+
+            mask-position: center;
+            -webkit-mask-position: center;
+
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat; */
+        }
+
+        /* Masonry gallery: CSS columns let items of different heights stack
+           and fill gaps naturally, instead of a rigid equal-height grid */
+        .masonry {
+            column-count: 2;
+            column-gap: 1.25rem;
+        }
+
+        .masonry-item {
+            will-change: transform;
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+            background-color: #eceadf;
+            /* mist — shows while images load */
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .masonry-item img {
+            transition:
+                transform .8s ease,
+                filter .8s ease;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.04);
+        }
+
+        @media (min-width: 640px) {
+            .masonry {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1140px) {
+            .masonry {
+                column-count: 3;
+            }
+        }
+
+        /* Testimonials background image: a separate, absolutely-positioned layer
+   with its own opacity, so only the photo fades — not the text/cards
+   above it. Sits on top of whatever background-color the <body> has. */
+        #testimonials {
+            overflow: hidden;
+        }
+
+        .testimonial-bg-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+
+            background-image: url('/assets/shop.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            /* mobile default: avoids iOS jank */
+
+            opacity: 0.1;
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-bg-image {
+                background-attachment: fixed;
+            }
+        }
+    </style>
+
+</head>
+
+<body id="pageBody" class="text-bark-dark font-body"
+    style="background-color: #fdfcf8; transition: background-color 0.6s ease;">
+
+    <!-- Navbar -->
+    <header id="siteHeader" class="fixed top-0 left-0 z-[20] right-0 transition-transform duration-100 px-0 xl:px-6"
+        style="background-color: #fdfcf8; transition: background-color 0.6s ease, transform 0.1s linear;">
+        <nav class="max-w-7xl mx-auto py-5 flex items-center justify-between xl:bg-transparent bg-white px-6 xl:px-0">
+            <h1
+                class="text-2xl lg:text-[1.6vw] font-heading-2 inline-block px-2 py-1 bg-bark font-bold tracking-wide text-white">
+                trish<span class="font-heading-2 text-blossom">art</span></h1>
+        </nav>
+    </header>
+
+    <main class="min-h-svh">
+
+        <!-- hero -->
+        <section id="home"
+            class="pt-0 lg:pt-16 xl:pt-0 pb-6 lg:pb-0 relative lg:min-h-[720px] lg:h-[720px] xl:min-h-svh xl:h-svh z-[5] xl:z-[20] px-4 sm:px-6 bg-ivory xl:bg-transparent">
+            <div class="hidden lg:flex h-full items-center">
+
+                <div class="flex items-center px-20 z-10 w-[40%]"></div>
+
+                <div class="h-[90%] flex-1 flex items-end justify-start overflow-hidden rounded-tl-[40px]">
+                    <div id="heroImage" class="hero-mask h-[120%] w-full max-w-[762px] rounded-br-[40px]"></div>
+                </div>
+
+            </div>
+
+            <!-- mobile hero image -->
+            <div
+                class="lg:hidden mt-[84px] block h-[280px] sm:h-[320px] hero-mask w-full rounded-tl-[40px] overflow-hidden">
+            </div>
+
+            <div class="relative lg:absolute z-10 top-0 left-0 right-0 bottom-0">
+                <div
+                    class="h-auto lg:min-h-[720px] lg:h-[720px] xl:min-h-svh xl:h-svh w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-2">
+                    <div class="h-full flex flex-col items-start justify-center col-span-1 lg:col-span-3 xl:col-span-1">
+                        <div
+                            class="w-full p-5 sm:p-6 lg:p-8 bg-blossom rounded-tl-0 rounded-br-[24px] sm:rounded-br-[40px] -mt-6 lg:mt-0 relative lg:sticky lg:top-1/2 lg:-translate-y-1/2">
+                            <h1
+                                class="font-heading-2 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-bark-dark">
+                                Handmade Wire Art,<br />Grown by Hand
+                            </h1>
+                            <p class="mt-4 sm:mt-6 text-bark text-base sm:text-lg lg:text-xl max-w-md">
+                                Every stem is bent, twisted, and shaped one piece at a time —
+                                no two bouquets ever come out the same.
+                            </p>
+                            <div class="flex flex-col mt-6 lg:mt-8 sm:flex-row flex-wrap items-center gap-2">
+                                <a href="#gallery"
+                                    class="inline-flex w-full sm:w-auto bg-ivory justify-center text-bark px-5 sm:px-7 py-2.5 sm:py-3 text-base sm:text-lg font-semibold hover:brightness-95 transition">
+                                    View the Gallery
+                                </a>
+                                <a href="#contact"
+                                    class="inline-flex w-full sm:w-auto justify-center bg-[#222] text-ivory px-5 sm:px-7 py-2.5 sm:py-3 text-base sm:text-lg font-semibold hover:brightness-95 transition">
+                                    Get in Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- gallery -->
+        <section id="gallery" class="relative py-12 sm:py-16 lg:py-20 px-0 sm:px-6 bg-blossom xl:bg-transparent">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="max-w-2xl mb-8 sm:mb-10 lg:mb-14 w-full px-6 sm:px-0">
+                    <p class="font-heading text-xs sm:text-sm uppercase tracking-[0.2em] text-leaf-dark mb-2 sm:mb-3">
+                        Gallery</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-bark-dark">A Garden That
+                        Never Wilts
+                    </h2>
+                    <p class="mt-3 sm:mt-4 text-bark text-sm sm:text-base lg:text-lg">
+                        A look at recent pieces — wire-wrapped blooms, full bouquets, and
+                        custom arrangements made for weddings, gifts, and quiet corners of home.
+                    </p>
+                </div>
+                <div class="w-full flex flex-col lg:flex-row items-stretch gap-4 sm:gap-6">
+
+                    <div class="masonry flex-1 px-6 sm:px-0">
+
+                        <div class="masonry-item" data-speed="-0.09">
+                            <img src="/assets/image-1.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[200px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="-0.09">
+                            <img src="/assets/image-2.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[100px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="-0.09">
+                            <img src="/assets/image-3.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[200px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="0.1">
+                            <img src="/assets/image-4.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[100px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item sm:block hidden" data-speed="0.1">
+                            <img src="/assets/image-5.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[200px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="0.1">
+                            <img src="/assets/image-6.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[100px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="-0.12">
+                            <img src="/assets/image-7.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[200px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="-0.12">
+                            <img src="/assets/image-8.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[100px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                        <div class="masonry-item" data-speed="-0.12">
+                            <img src="/assets/image-9.jpg" alt="Wire art flower piece"
+                                class="w-full rounded-xl sm:rounded-2xl object-cover h-[200px] sm:h-[240px] lg:h-auto" />
+                        </div>
+
+                    </div>
+
+                    <div class="w-full lg:w-[25%] h-48 sm:h-64 lg:h-auto">
+                        <div class="relative w-full h-full sm:rounded-tl-[24px] lg:rounded-xl overflow-hidden">
+                            <div id="galleryFeatureImage"
+                                class="absolute inset-0 w-full h-[130%] -top-[15%] bg-cover bg-center"
+                                style="background-image: url('/assets/gallery-feature.jpg');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:absolute z-10 top-0 left-0 right-0 bottom-0 pointer-events-none">
+                <div class="lg:h-svh sticky top-0 lg:-top-16 w-full max-w-7xl mx-auto flex items-center lg:justify-end">
+                    <div
+                        class="pointer-events-auto w-full lg:w-1/3 p-6 lg:p-8 bg-ivory lg:rounded-tl-[40px] sm:rounded-br-[40px] shadow-xl">
+                        <p class="font-heading text-sm uppercase tracking-[0.2em] text-bark mb-2">Custom Orders</p>
+                        <h3 class="font-heading-2 text-2xl font-bold text-bark leading-snug">Made to Match Your
+                            Moment</h3>
+                        <a href="#contact"
+                            class="mt-5 inline-flex bg-[#222] justify-center w-full sm:w-auto text-ivory px-6 py-2.5 text-sm font-semibold hover:brightness-95 transition">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- testimonials -->
+        <section id="testimonials"
+            class="relative py-12 sm:py-16 xl:h-screen xl:py-0 px-4 sm:px-6 bg-mist/40 flex items-center bg-mist xl:bg-transparent">
+            <!-- transparent image layer -->
+            <div class="testimonial-bg-image"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto w-full">
+
+                <div class="max-w-2xl mb-8 sm:mb-10 lg:mb-14 mx-auto text-left lg:text-center">
+                    <p class="font-heading text-xs sm:text-sm uppercase tracking-[0.2em] text-leaf-dark mb-2 sm:mb-3">
+                        Testimonials
+                    </p>
+                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-bark-dark">
+                        Loved by the People<br class="hidden sm:block" /> Who Carry Them Home
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+                    <div
+                        class="bg-ivory rounded-tl-[24px] sm:rounded-tl-[32px] rounded-br-[24px] sm:rounded-br-[32px] p-6 sm:p-7 shadow-sm text-left">
+                        <div class="flex gap-1 text-blossom-dark mb-4" aria-hidden="true">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-bark text-sm sm:text-base leading-relaxed">
+                            "I ordered a custom bouquet for my mom's birthday and it completely
+                            blew us away. The detail in every petal is unreal — it still sits
+                            on her windowsill months later."
+                        </p>
+                        <div class="mt-6 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blossom-light flex items-center justify-center font-heading font-bold text-bark-dark">
+                                J
+                            </div>
+                            <div>
+                                <p class="font-heading text-sm font-semibold text-bark-dark">Jamie R.</p>
+                                <p class="text-xs text-bark-light">Birthday Gift</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-ivory rounded-tl-[24px] sm:rounded-tl-[32px] rounded-br-[24px] sm:rounded-br-[32px] p-6 sm:p-7 shadow-sm text-left">
+                        <div class="flex gap-1 text-blossom-dark mb-4" aria-hidden="true">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-bark text-sm sm:text-base leading-relaxed">
+                            "We used Trish.art for our wedding centerpieces and they were the
+                            talking point of the whole reception. Handmade, sturdy, and somehow
+                            even prettier in person than in photos."
+                        </p>
+                        <div class="mt-6 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blossom-light flex items-center justify-center font-heading font-bold text-bark-dark">
+                                A
+                            </div>
+                            <div>
+                                <p class="font-heading text-sm font-semibold text-bark-dark">Alyssa & Tom</p>
+                                <p class="text-xs text-bark-light">Wedding Order</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-ivory rounded-tl-[24px] sm:rounded-tl-[32px] rounded-br-[24px] sm:rounded-br-[32px] p-6 sm:p-7 shadow-sm text-left sm:col-span-2 lg:col-span-1">
+                        <div class="flex gap-1 text-blossom-dark mb-4" aria-hidden="true">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <p class="text-bark text-sm sm:text-base leading-relaxed">
+                            "These never wilt, which is exactly what I wanted for my office desk.
+                            Communication was easy and shipping was fast — already planning my
+                            next order."
+                        </p>
+                        <div class="mt-6 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blossom-light flex items-center justify-center font-heading font-bold text-bark-dark">
+                                M
+                            </div>
+                            <div>
+                                <p class="font-heading text-sm font-semibold text-bark-dark">Maria L.</p>
+                                <p class="text-xs text-bark-light">Repeat Customer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact"
+            class="relative z-[10] min-h-0 xl:min-h-svh flex items-center py-20 xl:py-0 px-0 sm:px-6 bg-[#222] xl:bg-transparent">
+            <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+
+                <div class="px-6 sm:px-0">
+                    <p class="font-heading text-sm uppercase tracking-[0.2em] text-blossom mb-3">Get in Touch</p>
+                    <h2 class="font-heading-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-ivory leading-tight">
+                        Let's Bring Your<br />Bouquet to Life
+                    </h2>
+                    <p class="mt-6 text-mist text-base lg:text-lg max-w-md">
+                        Every piece starts with a conversation. Tell us about the occasion,
+                        the colors you love, or the person you're making it for — we'll
+                        shape the rest by hand.
+                    </p>
+
+                    <div class="mt-10 flex flex-col gap-4 text-mist">
+                        <a href="mailto:hello@trish.art" class="flex items-center gap-3 hover:text-blossom transition">
+                            <span class="font-heading text-sm uppercase tracking-[0.15em] text-blossom">Email</span>
+                            hello@trish.art
+                        </a>
+                        <a href="tel:+10000000000" class="flex items-center gap-3 hover:text-blossom transition">
+                            <span class="font-heading text-sm uppercase tracking-[0.15em] text-blossom">Call</span>
+                            (000) 000-0000
+                        </a>
+                    </div>
+                </div>
+
+                <form class="w-full bg-ivory sm:rounded-tl-[40px] sm:rounded-br-[40px] p-6 lg:p-10 shadow-2xl">
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-bark mb-2">Name</label>
+                            <input type="text" placeholder="Your name"
+                                class="w-full px-4 py-3 rounded-xl bg-mist/60 text-bark-dark placeholder:text-bark/50 focus:outline-none focus:ring-2 focus:ring-blossom transition" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-bark mb-2">Email</label>
+                            <input type="email" placeholder="you@example.com"
+                                class="w-full px-4 py-3 rounded-xl bg-mist/60 text-bark-dark placeholder:text-bark/50 focus:outline-none focus:ring-2 focus:ring-blossom transition" />
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <label class="block text-sm font-medium text-bark mb-2">What are you dreaming up?</label>
+                        <textarea rows="4"
+                            placeholder="Tell us about the occasion, colors, or style you have in mind..."
+                            class="w-full px-4 py-3 rounded-xl bg-mist/60 text-bark-dark placeholder:text-bark/50 focus:outline-none focus:ring-2 focus:ring-blossom transition resize-none"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="mt-6 w-full sm:w-auto inline-flex justify-center bg-bark text-ivory px-8 py-3.5 text-lg font-semibold hover:bg-bark-dark transition">
+                        Send Inquiry
+                    </button>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" class="relative bg-[#161616] text-mist px-6">
+        <div class="max-w-7xl mx-auto py-12 lg:py-16">
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                <div class="lg:col-span-2">
+                    <h2
+                        class="text-2xl font-heading-2 inline-block px-2 py-1 bg-ivory font-bold tracking-wide text-[#161616]">
+                        trishart
+                    </h2>
+                    <p class="mt-5 text-mist/80 max-w-sm">
+                        Handmade wire art and floral bouquets, shaped one stem at a time.
+                        Every piece is one-of-a-kind, made with care for the people and
+                        moments that matter to you.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-heading text-sm uppercase tracking-[0.2em] text-blossom mb-4">Explore</p>
+                    <ul class="space-y-3 text-mist/80">
+                        <li><a href="#home" class="hover:text-blossom transition">Home</a></li>
+                        <li><a href="#gallery" class="hover:text-blossom transition">Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-blossom transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="font-heading text-sm uppercase tracking-[0.2em] text-blossom mb-4">Get in Touch</p>
+                    <ul class="space-y-3 text-mist/80">
+                        <li><a href="mailto:hello@trish.art" class="hover:text-blossom transition">hello@trish.art</a>
+                        </li>
+                        <li><a href="tel:+10000000000" class="hover:text-blossom transition">(000) 000-0000</a></li>
+                        <li class="flex gap-4 pt-2">
+                            <a href="#" aria-label="Instagram" class="hover:text-blossom transition">Instagram</a>
+                            <a href="#" aria-label="Pinterest" class="hover:text-blossom transition">Pinterest</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div
+                class="mt-12 pt-8 border-t border-mist/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-mist/60">
+                <p>© 2026 trishart. All rights reserved.</p>
+                <p>Made by hand, in small batches.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+        const image = document.getElementById("heroImage");
+        const desktopMq = window.matchMedia("(min-width: 1024px)");
+
+        if (image) {
+            const onScroll = () => {
+                const scrollY = window.scrollY;
+                image.style.transform = `translateY(${-(scrollY * 0.15)}px)`;
+            };
+
+            const bindHeroParallax = () => {
+                if (desktopMq.matches) {
+                    window.addEventListener("scroll", onScroll, { passive: true });
+                } else {
+                    window.removeEventListener("scroll", onScroll);
+                    image.style.transform = "none";
+                }
+            };
+
+            bindHeroParallax();
+            desktopMq.addEventListener("change", bindHeroParallax);
+        }
+    </script>
+    <script>
+        const masonryItems = Array.from(document.querySelectorAll(".masonry-item[data-speed]")).map((el) => ({
+            el,
+            speed: parseFloat(el.dataset.speed) || 0,
+            current: 0,
+            target: 0,
+        }));
+
+        const gallerySectionEl = document.getElementById("gallery");
+        const masonryMq = window.matchMedia("(min-width: 1024px)");
+        const ease = 0.08;
+        let masonryRunning = false;
+
+        const updateMasonryTargets = () => {
+            if (!gallerySectionEl) return;
+            const galleryTop = gallerySectionEl.getBoundingClientRect().top + window.scrollY;
+            const scrolledIntoGallery = Math.max(0, window.scrollY - galleryTop);
+            masonryItems.forEach((item) => {
+                item.target = scrolledIntoGallery * item.speed;
+            });
+        };
+
+        const tickMasonry = () => {
+            if (!masonryMq.matches) {
+                masonryRunning = false;
+                return;
+            }
+            masonryItems.forEach((item) => {
+                item.current += (item.target - item.current) * ease;
+                item.el.style.transform = `translateY(${item.current}px)`;
+            });
+            requestAnimationFrame(tickMasonry);
+        };
+
+        const bindMasonryParallax = () => {
+            if (masonryMq.matches) {
+                window.addEventListener("scroll", updateMasonryTargets, { passive: true });
+                updateMasonryTargets();
+                if (!masonryRunning) {
+                    masonryRunning = true;
+                    requestAnimationFrame(tickMasonry);
+                }
+            } else {
+                window.removeEventListener("scroll", updateMasonryTargets);
+                masonryItems.forEach((item) => {
+                    item.current = 0;
+                    item.target = 0;
+                    item.el.style.transform = "none";
+                });
+            }
+        };
+
+        if (masonryItems.length) {
+            bindMasonryParallax();
+            window.addEventListener("resize", updateMasonryTargets);
+            masonryMq.addEventListener("change", bindMasonryParallax);
+        }
+    </script>
+    <script>
+        const pageBody = document.getElementById("pageBody");
+        const siteHeader = document.getElementById("siteHeader");
+
+        const bgSections = [
+            { el: document.getElementById("home"), color: "#fdfcf8" },
+            { el: document.getElementById("gallery"), color: "#f5d949" },
+            { el: document.getElementById("testimonials"), color: "#eceadf" },
+            { el: document.getElementById("contact"), color: "#222" },
+        ].filter(s => s.el);
+
+        const bgMq = window.matchMedia("(min-width: 1140px)");
+
+        const updateBg = () => {
+            if (!bgMq.matches) return; // skip entirely on mobile/tablet
+            const probeY = window.innerHeight * 0.5;
+            let active = bgSections[0];
+
+            for (const s of bgSections) {
+                const rect = s.el.getBoundingClientRect();
+                if (rect.top <= probeY) active = s;
+            }
+
+            if (pageBody) pageBody.style.backgroundColor = active.color;
+            if (siteHeader) siteHeader.style.backgroundColor = active.color;
+        };
+
+        const resetMobileBg = () => {
+            if (pageBody) pageBody.style.backgroundColor = "";
+            if (siteHeader) siteHeader.style.backgroundColor = "";
+        };
+
+        const bindBgBehavior = () => {
+            if (bgMq.matches) {
+                updateBg();
+            } else {
+                resetMobileBg();
+            }
+        };
+
+        bindBgBehavior();
+        window.addEventListener("scroll", updateBg, { passive: true });
+        window.addEventListener("resize", bindBgBehavior);
+        bgMq.addEventListener("change", bindBgBehavior);
+    </script>
+    <script>
+        const featureImage = document.getElementById("galleryFeatureImage");
+        const gallerySectionForFeature = document.getElementById("gallery");
+        const featureMq = window.matchMedia("(min-width: 1024px)");
+
+        if (featureImage && gallerySectionForFeature) {
+            let currentY = 0;
+            let targetY = 0;
+            const ease = 0.08;
+            const speed = 0.2;
+            let featureRunning = false;
+
+            const updateFeatureTarget = () => {
+                const galleryTop = gallerySectionForFeature.getBoundingClientRect().top + window.scrollY;
+                const scrolledIntoGallery = Math.max(0, window.scrollY - galleryTop);
+                targetY = scrolledIntoGallery * speed;
+            };
+
+            const tickFeature = () => {
+                if (!featureMq.matches) {
+                    featureRunning = false;
+                    return;
+                }
+                currentY += (targetY - currentY) * ease;
+                featureImage.style.transform = `translateY(${currentY}px)`;
+                requestAnimationFrame(tickFeature);
+            };
+
+            const bindFeatureParallax = () => {
+                if (featureMq.matches) {
+                    window.addEventListener("scroll", updateFeatureTarget, { passive: true });
+                    updateFeatureTarget();
+                    if (!featureRunning) {
+                        featureRunning = true;
+                        requestAnimationFrame(tickFeature);
+                    }
+                } else {
+                    window.removeEventListener("scroll", updateFeatureTarget);
+                    currentY = 0;
+                    targetY = 0;
+                    featureImage.style.transform = "none";
+                }
+            };
+
+            bindFeatureParallax();
+            window.addEventListener("resize", updateFeatureTarget);
+            featureMq.addEventListener("change", bindFeatureParallax);
+        }
+    </script>
+</body>
+
+</html>
