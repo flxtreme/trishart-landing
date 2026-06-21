@@ -32,8 +32,6 @@
      break-inside: avoid;
      margin-bottom: 1.25rem;
      background-color: #eceadf;
-     /* mist — shows while images load */
-     border-radius: 1rem;
      overflow: hidden;
  }
 
