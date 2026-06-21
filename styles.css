@@ -80,6 +80,23 @@
      opacity: 0.1;
  }
 
+
+ @keyframes floatUpDown {
+
+     0%,
+     100% {
+         transform: translateY(0);
+     }
+
+     50% {
+         transform: translateY(-14px);
+     }
+ }
+
+ .float-slow {
+     animation: floatUpDown 4s ease-in-out infinite;
+ }
+
  @media (min-width: 1024px) {
      .testimonial-bg-image {
          background-attachment: fixed;
